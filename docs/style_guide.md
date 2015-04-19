@@ -75,15 +75,16 @@ This subsection describes when a type definition should be "global"
 (i.e. named and an immediate child of "xs:schema") versus
 "local" (i.e. anonymous and nested within another component, aka in-lined).
 
-A global example is--
+Global might look like--
 
 ```xml
-<xs:complexType name="Person">
-  <xs:element name="Name" type="xs:string" />
-</xs:complexType>
+<xs:schema>
+  <xs:complexType name="Person">
+    <xs:element name="Name" type="xs:string" />
+  </xs:complexType>
 ```
 
-A local example is--
+Local might look like--
 
 ```xml
 <xs:element name="Person">
@@ -93,17 +94,17 @@ A local example is--
 </xs:element>
 ```
 
-We use an approach that is in the spirit of "Venetian Blind."  Namely,
-define a type globally if any of the following are true:
+Our approach is in the spirit of "Venetian Blind."  Define a type globally
+if any of the following are true:
 
-1. elements of the type are referenced by ID via `type="xs:IDREF".
+1. elements of the type are referenced by ID via `type="xs:IDREF"`.
    For example--
 
    ```xml
    <xs:element name="PrecinctId" type="xs:IDREF" />
    ```
 
-2. elements of that type occur in more than one location within the
+2. elements of the type occur in more than one location within the
    root element.  For example--
 
    ```xml
