@@ -116,13 +116,7 @@ def make_table(all_types, data_type):
     return table
 
 
-def update_table_files(type_name=None):
-    all_types = common.read_types()
-    if type_name is None:
-        type_names = sorted(all_types.keys())
-    else:
-        type_names = [type_name]
-
+def update_table_files(type_names):
     for type_name in type_names:
         data_type = common.get_type(all_types, type_name)
         table = make_table(all_types, data_type)
@@ -132,6 +126,16 @@ def update_table_files(type_name=None):
         if not os.path.exists(dir_path):
             os.makedirs(dir_path)
         common.write_file(rest_path, text)
+
+
+def update_table_rest(type_name=None):
+    all_types = common.read_types()
+    if type_name is None:
+        type_names = sorted(all_types.keys())
+    else:
+        type_names = [type_name]
+
+    update_table_files(type_names)
 
 
 def analyze_types():
